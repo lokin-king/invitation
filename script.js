@@ -20,7 +20,7 @@ const canvas = document.querySelector("#sky");
 const ctx = canvas.getContext("2d");
 
 const CONFIG = {
-  telegramEndpoint: ""
+  telegramEndpoint: "https://date-invitation-bot.20091979soa.workers.dev/"
 };
 
 const teasingLines = [
