@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Запрошення для тебе</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="sky" aria-hidden="true"></canvas>
+
+    <main class="shell">
+      <section class="panel step is-active" id="invite" data-step="invite">
+        <div class="stamp">тільки для тебе</div>
+        <p class="eyebrow">маленьке запрошення від мене</p>
+        <h1>Підеш зі мною на побачення?</h1>
+        <p class="letter">
+          Я дуже хочу провести з тобою вечір так, щоб ти усміхалась частіше, ніж дивилась на годинник.
+          Кава, прогулянка, щось смачне і я поруч. Обіцяю бути уважним, смішним настільки, наскільки вийде,
+          і зробити цей день нашим.
+        </p>
+
+        <div class="plans" aria-label="План побачення">
+          <div><span>01</span>зустрінемось без поспіху</div>
+          <div><span>02</span>підемо туди, де тобі буде добре</div>
+          <div><span>03</span>я скажу тобі це наживо</div>
+        </div>
+
+        <div class="actions">
+          <button class="yes" id="yesBtn" type="button">Так, хочу</button>
+          <button class="no" id="noBtn" type="button">Ні</button>
+        </div>
+
+        <p class="hint" id="hint">Можна чесно натиснути “Так”. Кнопка “Ні” трохи соромиться.</p>
+      </section>
+
+      <section class="panel step choice-step" id="choice" data-step="choice" aria-live="polite">
+        <p class="eyebrow">тепер найважливіше</p>
+        <h2>Що ти хочеш?</h2>
+        <p class="sub">Вибери тільки один варіант, який тобі зараз найбільше в кайф.</p>
+
+        <div class="date-grid" role="radiogroup" aria-label="Варіант побачення">
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Піца">
+            <span class="food-art">🍕</span>
+            <strong>Піца</strong>
+          </button>
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Кіно">
+            <span class="food-art">🎬</span>
+            <strong>Кіно</strong>
+          </button>
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Шаурма">
+            <span class="food-art">🌯</span>
+            <strong>Шаурма</strong>
+          </button>
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Тортик">
+            <span class="food-art">🍰</span>
+            <strong>Тортик</strong>
+          </button>
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Хінкалі">
+            <span class="food-art">🥟</span>
+            <strong>Хінкалі</strong>
+          </button>
+          <button class="date-card" type="button" role="radio" aria-checked="false" data-value="Прогулянка">
+            <span class="food-art">🌆</span>
+            <strong>Прогулянка</strong>
+          </button>
+        </div>
+
+        <p class="hint selection-hint" id="choiceHint">Спочатку вибери один варіант.</p>
+        <button class="primary wide" id="continueBtn" type="button" disabled>Продовжити →</button>
+        <button class="text-button" type="button" data-back="invite">Назад</button>
+      </section>
+
+      <section class="panel step schedule-step" id="schedule" data-step="schedule" aria-live="polite">
+        <div class="bunnies" aria-hidden="true">
+          <div class="bunny">♡</div>
+          <div class="bunny">♡</div>
+        </div>
+        <p class="eyebrow">отже, коли?</p>
+        <h2>Коли ти вільна?</h2>
+        <p class="sub">Вибери дату і час, а я підлаштуюся та все організую.</p>
+
+        <label class="field">
+          <span>Дата</span>
+          <input id="dateInput" type="date" />
+        </label>
+        <label class="field">
+          <span>Час</span>
+          <input id="timeInput" type="time" />
+        </label>
+
+        <p class="hint selection-hint" id="scheduleHint">Додай дату і час, щоб зробити запрошення офіційним.</p>
+        <button class="primary wide" id="finishBtn" type="button" disabled>Вибрати дату ♡</button>
+        <p class="send-status" id="sendStatus" aria-live="polite"></p>
+        <button class="text-button" type="button" data-back="choice">Назад</button>
+      </section>
+
+      <section class="panel step answer" id="answer" data-step="answer" aria-live="polite">
+        <div class="ticket" aria-label="Квиток на побачення">
+          <div class="ticket-top">SVІDOS · тільки наш</div>
+          <h3>Квиток на побачення</h3>
+          <div class="ticket-row">
+            <span>Дата</span>
+            <strong id="finalDate">—</strong>
+          </div>
+          <div class="ticket-row">
+            <span>Час</span>
+            <strong id="finalTime">—</strong>
+          </div>
+          <div class="ticket-program">
+            <span>В програмі вечора</span>
+            <strong id="finalChoice">—</strong>
+          </div>
+        </div>
+        <h2>Радію, що ти не відмовилась ♡</h2>
+        <p id="finalText">Будь готова, я приїду за тобою і зроблю цей вечір нашим.</p>
+        <button class="again" id="againBtn" type="button">Ще раз</button>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
